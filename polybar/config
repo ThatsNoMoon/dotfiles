@@ -8,34 +8,13 @@
 ;=====================================================
 
 [colors]
-;background = ${xrdb:color0:#222}
 background = #B0222222
 background-alt = #B0444444
-;foreground = ${xrdb:color7:#222}
 foreground = #dfdfdf
 foreground-alt = #AAA
-;primary = #ffb52a
-;primary = #9a17d1
-;primary = #fba922
 primary = ${self.yellow}
 secondary = #e60053
 alert = #bd2c40
-
-;red     = #fe3529
-;green   = #55a7e2
-;yellow  = #385678
-;blue    = #1f2791
-;magenta = #fe5545
-;cyan    = #5eacf3
-;white   = #ffffff
-
-;red     = #d246df
-;green   = #00f4a2
-;yellow  = #00f454
-;blue    = #7b41c7
-;magenta = #ef3af1
-;cyan    = #3fd4ca
-;white   = #ffffff
 
 red     = #ff2b26
 green   = #43e93c
@@ -58,7 +37,6 @@ fixed-center = false
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-;line-size = 3
 line-size = 3
 line-color = #f00
 
