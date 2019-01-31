@@ -1,0 +1,17 @@
+#+TITLE Dotfiles
+
+* Dotfiles repo, stored at =~/.config=.
+
+* Prerequisites
+The ~$ZDOTDIR~ environment variable has to be pointing to =~/.config/zsh= for the
+config files there to work. I edit a global env file to accomplish this, but
+this isn't good style.
+
+~.zshenv~ also sets a lot of environment variables to get other applications to
+put configuration files in =~/.config=, =~/.cache=, and =~/.local/share=.
+
+I make symlinks from =~/.xinitrc= to =~/.config/x11/xinitrc=, from =~/.emacs.d=
+to =~/.config/emacs=, and from =~/.doom.d= to =~/.config/doom=.
+
+I use Doom Emacs, so all the configuration is in =~/.config/doom= and not
+=~/.config/emacs=.

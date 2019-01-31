@@ -1,0 +1,36 @@
+export VISUAL = "/usr/bin/emacs"
+export EDITOR = "/usr/bin/nvim"
+
+alias ls  = "exa -F"
+alias cat = "bat"
+alias j   = "just"
+alias py  = "python3"
+
+fn PROMPT
+    echo -n "  ┌"
+
+    let cwd_len = $len(PWD)
+
+    let n_bars = 50
+    let n_bars -= $cwd_len
+    let n_bars //= 2
+
+    let extra = $((cwd_len % 2))
+
+    #let n_bars += extra
+
+    for i in {0..$n_bars}
+        echo -n "─"
+    end
+    echo -n "$PWD"
+
+    let n_bars += $extra
+
+    for i in {0..$n_bars}
+        echo -n "─"
+    end
+
+    echo "┐"
+
+    echo -n "λ "
+end
