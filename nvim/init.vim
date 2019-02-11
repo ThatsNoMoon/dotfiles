@@ -81,17 +81,24 @@ let g:onedark_terminal_italics=1
 set ruler
 set autoread
 set number
-set autoindent smartindent
 set nowrap
-set smarttab
-set shiftwidth=4
+
+set autoindent smartindent
 set tabstop=4
+set softtabstop=0
+set expandtab
+set shiftwidth=4
+set smarttab
+
 set shell=zsh
+
 set incsearch
 set ignorecase
 set smartcase
+
 set scrolloff=3
 set sidescrolloff=5
+
 set backup
 set backupdir=~/.cache/nvim/backup
 set directory=~/.cache/nvim/tmp

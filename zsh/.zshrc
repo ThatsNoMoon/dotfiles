@@ -83,7 +83,7 @@ alias extractids='grep -Po '"'"'ID:\K[0-9]*'"'"
 function fzo(){
 	cmd="nvim"
 	if [ -n "$1" ]; then
-		cmd="$1"
+		cmd="$@"
 	fi
 	fzf -m | xargs "$cmd"
 }
