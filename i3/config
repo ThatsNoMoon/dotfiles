@@ -36,10 +36,10 @@ gaps inner 15
 
 smart_gaps on
 
-exec_always /home/ben/.bin/compton
-exec_always dunst
-exec_always udiskie
-exec_always redshift -P
+exec_always --no-startup-id /home/ben/.local/bin/compton
+exec_always --no-startup-id dunst
+exec --no-startup-id udiskie
+exec_always --no-startup-id redshift -P
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -66,7 +66,7 @@ bindsym $mod+Shift+Escape exec maim -o -u | xclip -selection clipboard -t image/
 bindsym $mod++Escape exec maim -s -o -u | xclip -selection clipboard -t image/png
 
 # Set wallpaper
-exec --no-startup-id feh --bg-max /home/ben/Pictures/Wallpapers/wallpaper
+exec-always --no-startup-id feh --bg-max /home/ben/Pictures/Wallpapers/wallpaper
 
 # Bind volume keys.
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer sset Master 2%- 

@@ -19,35 +19,7 @@ font pango:System San Fransisco Display 9
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
 
-#set $bg-color            #4396dc
-#set $bg-color            #914fad
-#set $inactive-bg-color   #3c2f3f
-#set $text-color          #f4f3f5
-#set $inactive-text-color #676e7d
-#set $urgent-bg-color     #e53935
-
-##set $bg-color            #c5c8c6
-#set $bg-color            #3971ed
-##set $inactive-bg-color   #393639
-#set $inactive-bg-color   #1d1f21
-##set $text-color          #1d1f21
-#set $text-color          #c5c8c6
-#set $inactive-text-color #c5c8c6
-#set $urgent-bg-color     #ea4335
-
-#set $bg-color            #5dacf3
-#set $inactive-bg-color   #1d1f21
-#set $text-color          #1d1f21
-#set $inactive-text-color #c5c8c6
-#set $urgent-bg-color     #ea4335
-
-#set $bg-color            #eb3bf1
-#set $inactive-bg-color   #1d211f
-#set $text-color          #1d211f
-#set $inactive-text-color #c5c8c6
-#set $urgent-bg-color     #ea4335
-
-set $bg-color            #4b97fc
+set $bg-color            #61afef
 set $inactive-bg-color   #1d1f21
 set $text-color          #1d211f
 set $inactive-text-color #c5c8c6
@@ -64,7 +36,6 @@ gaps inner 15
 
 smart_gaps on
 
-exec_always /home/ben/.bin/compton
 exec_always dunst
 exec_always udiskie
 
@@ -97,7 +68,7 @@ bindsym control+Print exec maim -s -o -u | xclip -selection clipboard -t image/p
 bindsym $mod+Shift+Escape exec maim -o -u | xclip -selection clipboard -t image/png
 
 # take screenshot (area)
-bindsym $mod++Escape exec maim -s -o -u | xclip -selection clipboard -t image/png
+bindsym $mod+Escape exec maim -s -o -u | xclip -selection clipboard -t image/png
 
 # Set wallpaper
 #exec --no-startup-id feh --bg-max /home/ben/Pictures/Wallpapers/wallpaper

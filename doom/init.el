@@ -35,7 +35,7 @@
       ;modeline          ; snazzy, Atom-inspired modeline, plus API
        nav-flash         ; blink the current line after jumping
       ;neotree           ; a project drawer, like NERDTree for vim
-       treemacs          ; a project drawer, like neotree but cooler
+      ;treemacs          ; a project drawer, like neotree but cooler
        (popup            ; tame sudden yet inevitable temporary windows
         +all             ; catch all popups that start with an asterix
         +defaults)       ; default popup rules
@@ -79,7 +79,7 @@
 
        :lang
       ;assembly          ; assembly for fun or debugging
-      ;(cc +irony +rtags); C/C++/Obj-C madness
+       (cc +irony +rtags); C/C++/Obj-C madness
        clojure           ; java with a lisp
        common-lisp       ; if you've seen one lisp, you've seen them all
       ;coq               ; proofs-as-programs
@@ -95,7 +95,8 @@
        haskell           ; a language that's lazier than I am
       ;hy                ; readability of scheme w/ speed of python
       ;idris             ;
-       (java +meghanada) ; the poster child for carpal tunnel syndrome
+      ;(java +meghanada) ; the poster child for carpal tunnel syndrome
+       java
        javascript        ; all(hope(abandon(ye(who(enter(here))))))
       ;julia             ; a better, faster MATLAB
       ;latex             ; writing papers in Emacs has never been so fun
