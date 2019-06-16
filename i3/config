@@ -13,17 +13,19 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:System San Fransisco Display 9
+font pango:System San Fransisco 9
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
 
-set $bg-color            #4b97fc
-set $inactive-bg-color   #1d1f21
-set $text-color          #1d211f
-set $inactive-text-color #c5c8c6
-set $urgent-bg-color     #ea4335
+set $bg-color             #4b97fc
+set $inactive-bg-color    #23262d
+set $unfocused-bg-color   #1d1f21
+set $text-color           #1d211f
+set $inactive-text-color  #c5c8c6
+set $unfocused-text-color #979997
+set $urgent-bg-color      #ea4335
 
 for_window [class="^.*"] border pixel 2
 for_window [class="Pavucontrol"] floating enable
@@ -32,7 +34,7 @@ for_window [class="Notcraft"] floating enable
 for_window [class="Peek"] floating enable
 for_window [class="Devtools"] floating enable
 
-gaps inner 15
+#gaps inner 15
 
 smart_gaps on
 
@@ -66,7 +68,7 @@ bindsym $mod+Shift+Escape exec maim -o -u | xclip -selection clipboard -t image/
 bindsym $mod++Escape exec maim -s -o -u | xclip -selection clipboard -t image/png
 
 # Set wallpaper
-exec-always --no-startup-id feh --bg-max /home/ben/Pictures/Wallpapers/wallpaper
+exec-always --no-startup-id feh --bg-scale /home/ben/Pictures/Wallpapers/wallpaper
 
 # Bind volume keys.
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer sset Master 2%- 
@@ -117,7 +119,7 @@ bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
-bindsym $mod+comma layout tabbed
+bindsym $mod+t layout tabbed
 bindsym $mod+period layout toggle split
 
 # toggle tiling / floating
@@ -222,9 +224,9 @@ mode "resize" {
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
         bindsym h resize shrink width 10 px or 10 ppt
-        bindsym t resize grow height 10 px or 10 ppt
-        bindsym n resize shrink height 10 px or 10 ppt
-        bindsym s resize grow width 10 px or 10 ppt
+        bindsym l resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym j resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -243,11 +245,11 @@ bindsym $mod+p mode "resize"
 # finds out, if available)
 
 # window colors
-#                       border              background         text                indicator
-client.focused          $bg-color          $bg-color          $text-color          $bg-color
-client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color $inactive-bg-color
-client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color $inactive-bg-color
-client.urgent           $urgent-bg-color   $urgent-bg-color   $inactive-text-color $urgent-bg-color
+#                       border              background          text                  indicator
+client.focused          $bg-color           $bg-color           $text-color           $bg-color
+client.unfocused        $unfocused-bg-color $unfocused-bg-color $unfocused-text-color $inactive-bg-color
+client.focused_inactive $inactive-bg-color  $inactive-bg-color  $inactive-text-color  $inactive-bg-color
+client.urgent           $urgent-bg-color    $urgent-bg-color    $inactive-text-color  $urgent-bg-color
 
 hide_edge_borders both
 

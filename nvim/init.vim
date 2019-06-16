@@ -24,6 +24,9 @@ Plugin 'vim-airline/vim-airline'
 "Plugin 'autoclose'
 Plugin 'surround.vim'
 Plugin 'EasyMotion'
+"Plugin 'Syntastic'
+
+Plugin 'elixir-editors/vim-elixir'
 
 " Git plugin not hosted on GitHub
 " Plugin 'git://git.wincent.com/command-t.git'
@@ -75,6 +78,8 @@ set background=dark
 set termguicolors
 colorscheme onedark
 highlight LineNr ctermfg=grey guifg=#969896
+
+set cc=80
 
 let g:onedark_terminal_italics=1
 

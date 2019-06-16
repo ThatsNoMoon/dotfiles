@@ -74,6 +74,12 @@
 (use-package highlight-indentation
   :ensure t)
 
+(use-package intero
+  :ensure t)
+
+(use-package htmlize
+  :ensure t)
+
 (use-package meghanada
   :ensure t
   :config
@@ -88,6 +94,30 @@
 
 (add-hook 'java-mode-hook 'java-hook)
 
+(defun my-org-inline-css-hook (exporter)
+  "Insert custom inline css"
+  (when (eq exporter 'html)
+    (let* ((dir (ignore-errors (file-name-directory (buffer-file-name))))
+           (path (concat dir "style.css"))
+           (homestyle (or (null dir) (null (file-exists-p path))))
+           (final (if homestyle "~/.emacs.d/org-style.css" path)))
+      (setq org-html-head-include-default-style nil)
+      (setq org-html-head (concat
+                           "<style type=\"text/css\">\n"
+                           "<!--/*--><![CDATA[/*><!--*/\n"
+                           (with-temp-buffer
+                             (insert-file-contents final)
+                             (buffer-string))
+                           "/*]]>*/-->\n"
+                           "</style>\n")))))
+
+(add-hook 'org-export-before-processing-hook 'my-org-inline-css-hook)
+
+(setq org-latex-packages-alist '(("margin=1in" "geometry" nil)))
+(setq org-latex-toc-command "\\tableofcontents \\clearpage")
+
+(setq inferior-lisp-program "/usr/bin/sbcl")
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -95,7 +125,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (restart-emacs anzu org-bullets which-key evil-snipe evil-surround meghanada evil-mode use-package evil ace-window))))
+    (htmlize intero restart-emacs anzu org-bullets which-key evil-snipe evil-surround meghanada evil-mode use-package evil ace-window))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
