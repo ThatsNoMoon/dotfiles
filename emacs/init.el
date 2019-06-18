@@ -48,11 +48,10 @@
 (use-package magit
   :ensure t)
 
-(use-package electric
-  :ensure t)
-
 (use-package anzu
-  :ensure t)
+  :ensure t
+  :config
+  (global-anzu-mode +1))
 
 (use-package restart-emacs
   :ensure t)
@@ -85,6 +84,8 @@
   :config
   (setq meghanada-java-path "java")
   (setq meghanada-maven-path "mvn"))
+
+(electric-pair-mode)
 
 (defun java-hook ()
   (meghanada-mode t)
@@ -123,9 +124,13 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(electric-pair-mode t)
+ '(helm-mode t)
+ '(line-number-mode nil)
  '(package-selected-packages
    (quote
-    (htmlize intero restart-emacs anzu org-bullets which-key evil-snipe evil-surround meghanada evil-mode use-package evil ace-window))))
+    (helm-everywhere anzu-evil htmlize intero restart-emacs anzu org-bullets which-key evil-snipe evil-surround meghanada evil-mode use-package evil ace-window)))
+ '(which-key-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
