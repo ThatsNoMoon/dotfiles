@@ -61,7 +61,7 @@ font-5 = "Font Awesome 5 Brands:style=Regular:pixelsize=10;0"
 modules-left = i3 xwindow
 modules-center = 
 ;modules-right = filesystem xbacklight volume xkeyboard memory cpu wlan eth battery temperature date powermenu
-modules-right = volume memory cpu temperature wlan eth date powermenu
+modules-right = cmus volume memory cpu temperature wlan eth date powermenu
 
 tray-position = right
 tray-padding = 2
@@ -126,15 +126,24 @@ label-urgent = %name%
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
 
-[module/mpd]
-type = internal/mpd
-format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
+[module/cmus]
+type = custom/script
 
-icon-prev = 
-icon-stop = 
-icon-play = 
-icon-pause = 
-icon-next = 
+exec = ~/.config/polybar/cmus.sh
+exec-if = pgrep -x cmus
+interval = 1
+
+click-left = cmus-remote --next
+click-right = cmus-remote --prev
+click-middle = cmus-remote --pause
+scroll-up = cmus-remote --volume +5%
+scroll-down = cmus-remote --volume -5%
+
+label-font = 3
+format = <label>
+format-underline = ${colors.foreground-alt}
+label = %output%
+label-maxlen = 50
 
 label-song-maxlen = 25
 label-song-ellipsis = true

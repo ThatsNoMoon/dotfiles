@@ -78,31 +78,40 @@ alias please='sudo $(fc -ln -1)'
 alias flashkb='teensy-loader-cli -mmcu=atmega32u4 -v -w'
 # escaped single quotes    vvvvv           vvvv
 alias extractids='grep -Po '"'"'ID:\K[0-9]*'"'"
+alias extractjoins='grep -Po '"'"'ID:\K[0-9]*(?=.*joined)'"'"
+# output clipboard
+alias clipo='xclip -o -sel clip'
+# input clipboard
+alias clipi='xclip -i -sel clip'
 
 # opens file with fzf
 function fzo(){
-	cmd="nvim"
-	if [ -n "$1" ]; then
-		cmd="$@"
-	fi
-	fzf -m | xargs "$cmd"
+    cmd="nvim"
+    if [ -n "$1" ]; then
+        cmd="$@"
+    fi
+    fzf -m | xargs "$cmd"
 }
 
 function countdown(){
-   date1=$((`date +%s` + $1)); 
-   while [ "$date1" -ge `date +%s` ]; do 
-     echo -ne "$(date -u --date @$(($date1 - `date +%s`)) +%H:%M:%S)\r";
-     sleep 0.1
-   done
+    date1=$((`date +%s` + $1));
+    while [ "$date1" -ge `date +%s` ]; do
+        echo -ne "$(date -u --date @$(($date1 - `date +%s`)) +%H:%M:%S)\r";
+        sleep 0.1
+    done
 }
 function stopwatch(){
-  date1=`date +%s`; 
-   while true; do 
-    echo -ne "$(date -u --date @$((`date +%s` - $date1)) +%H:%M:%S)\r"; 
+  date1=`date +%s`;
+   while true; do
+    echo -ne "$(date -u --date @$((`date +%s` - $date1)) +%H:%M:%S)\r";
     sleep 0.1
    done
 }
 
 function packages() {
-	pacman -Qq $1 | fzf --preview 'pacman -Qil {}' --bind 'enter:execute(pacman -Qil {} | less)'
+    pacman -Qq $1 | fzf --preview 'pacman -Qil {}' --bind 'enter:execute(pacman -Qil {} | less)'
+}
+
+function ban() {
+    echo ">>ban $( cat "$1" ) raid botnet" | tr '\n' ' ' | clipi
 }
