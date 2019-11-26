@@ -12,6 +12,3 @@ put configuration files in =~/.config=, =~/.cache=, and =~/.local/share=.
 
 I make symlinks from =~/.xinitrc= to =~/.config/x11/xinitrc=, and from
 =~/.emacs.d= to =~/.config/emacs=.
-
-I use Doom Emacs, so all the configuration is in =~/.config/doom= and not
-=~/.config/emacs=.
