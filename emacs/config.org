@@ -34,8 +34,9 @@
 #+end_src
 ** Display line numbers
 #+begin_src emacs-lisp :tangle yes
-(add-hook 'text-mode-hook #'display-line-numbers-mode)
-(add-hook 'prog-mode-hook #'display-line-numbers-mode)
+(unless (version< emacs-version "26")
+  (add-hook 'text-mode-hook #'display-line-numbers-mode)
+  (add-hook 'prog-mode-hook #'display-line-numbers-mode))
 #+end_src
 ** Visual lines in text modes
 #+begin_src emacs-lisp :tangle yes
@@ -244,10 +245,10 @@ does not close the window it was used in."
 (use-package js2-mode
   :mode "\\.js\\'"
   :config
-  (add-hook 'js2-menu-hook #'js2-imenu-extras-mode))
+  (add-hook 'js2-menu-hook #'js2-imenu-extras-mode)
+  (add-hook 'js2-mode-hook #'js2-refactor-mode))
 
-(use-package js2-refactor
-  :mode "\\.js\\'")
+(use-package js2-refactor)
   
 (use-package rustic)
 #+end_src
