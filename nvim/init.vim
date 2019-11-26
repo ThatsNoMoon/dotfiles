@@ -22,8 +22,14 @@ Plugin 'vim-airline/vim-airline'
 " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
 "Plugin 'autoclose'
+Plugin 'delimitMate'
 Plugin 'surround.vim'
 Plugin 'EasyMotion'
+"Plugin 'Syntastic'
+
+Plugin 'elixir-editors/vim-elixir'
+
+Plugin 'hylang/vim-hy'
 
 " Git plugin not hosted on GitHub
 " Plugin 'git://git.wincent.com/command-t.git'
@@ -75,6 +81,8 @@ set background=dark
 set termguicolors
 colorscheme onedark
 highlight LineNr ctermfg=grey guifg=#969896
+
+set cc=80
 
 let g:onedark_terminal_italics=1
 
