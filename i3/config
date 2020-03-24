@@ -30,7 +30,7 @@ smart_gaps on
 exec_always --no-startup-id /home/ben/.local/bin/compton
 exec_always --no-startup-id dunst
 exec --no-startup-id udiskie
-exec_always --no-startup-id redshift -P -l 39:-105
+exec_always --no-startup-id redshift -P -l 39:-105 -t 6500:3500
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod

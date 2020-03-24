@@ -34,9 +34,9 @@
 #+end_src
 ** Display line numbers
 #+begin_src emacs-lisp :tangle yes
-(unless (version< emacs-version "26")
-  (add-hook 'text-mode-hook #'display-line-numbers-mode)
-  (add-hook 'prog-mode-hook #'display-line-numbers-mode))
+(add-hook 'text-mode-hook #'display-line-numbers-mode)
+(add-hook 'prog-mode-hook #'display-line-numbers-mode)
+(add-hook 'conf-mode-hook #'display-line-numbers-mode)
 #+end_src
 ** Visual lines in text modes
 #+begin_src emacs-lisp :tangle yes
@@ -52,15 +52,19 @@
 (add-hook 'text-mode-hook #'flyspell-mode)
 (add-hook 'org-mode-hook #'flyspell-mode)
 #+end_src
+** Use human-readable sizes in dired-mode
+#+begin_src emacs-lisp :tangle yes
+(setq dired-listing-switches "-alh")
+#+end_src
 * Packages
 #+begin_src emacs-lisp :tangle yes
 (require 'package)
 #+end_src
 ** Package archive setup
 #+begin_src emacs-lisp :tangle yes
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
+(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/"))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/"))
 #+end_src
 ** package setup
 #+begin_src emacs-lisp :tangle yes
@@ -160,6 +164,8 @@ does not close the window it was used in."
          :map evil-motion-state-map
          ("L" . evil-forward-arg)
          ("H" . evil-backward-arg)))
+         
+(use-package evil-magit)
 #+end_src
 ** Theme
 #+begin_src emacs-lisp :tangle yes
@@ -189,6 +195,8 @@ does not close the window it was used in."
 (use-package projectile)
 
 (use-package helm-projectile)
+
+(use-package lsp-mode)
 #+end_src
 ** Text editing
 #+begin_src emacs-lisp :tangle yes
@@ -224,9 +232,12 @@ does not close the window it was used in."
   :hook (haskell-mode . electric-indent-mode))
 (use-package intero
   :hook (haskell-mode . intero-mode))
+  
+(use-package elixir-mode
+  :mode "\\.exs?\\'")
 
 (use-package alchemist
-  :mode "\\.exs?\\'")
+  :mode ("\\.exs?\\'" . alchemist-mode))
 
 (use-package web-mode
   :mode "\\.html\\.l?eex\\'")
@@ -250,7 +261,8 @@ does not close the window it was used in."
 
 (use-package js2-refactor)
   
-(use-package rustic)
+(use-package rust-mode
+  :mode "\\.js\\'")
 #+end_src
 ** Misc
 #+begin_src emacs-lisp :tangle yes
@@ -343,7 +355,10 @@ does not close the window it was used in."
   "C i" 'open-config
   "C l" 'load-init-el
   "q q" 'prompt-kill-emacs
-  "q r" 'prompt-restart-emacs)
+  "q r" 'prompt-restart-emacs
+  "g g" 'magit-status
+  "g c" 'magit-commit-create
+  "g s" 'magit-stage-file)
 #+end_src
 ** elisp-keymap
 #+begin_src emacs-lisp :tangle yes

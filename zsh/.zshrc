@@ -1,7 +1,18 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.config/oh-my-zsh"
 
-ZSH_THEME="lunar"
+#ZSH_THEME="lunar"
+ZSH_THEME="powerlevel9k/powerlevel9k"
+
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_RPROMPT_ON_NEWLINE=false
+
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(time background_jobs dir)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode status command_execution_time)
+
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
+POWERLEVEL9K_SHORTEN_DELIMITER=""
+POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
 
 COMPLETION_WAITING_DOTS="true"
 
@@ -16,7 +27,10 @@ export HISTFILE=$ZDOTDIR/.zsh_history
 
 source $ZSH/oh-my-zsh.sh
 
-alias ls="exa -Fx"
+POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
+POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX=" %{$fg_bold[cyan]%}λ%{$reset_color%} "
+
+alias ls="exa -F"
 alias l="exa -lh"
 alias ll="exa -lah"
 alias cat="bat"
@@ -37,6 +51,10 @@ alias extractjoins='grep -Po '"'"'ID:\K[0-9]*(?=.*joined)'"'"
 alias clipo='xclip -o -sel clip'
 # input clipboard
 alias clipi='xclip -i -sel clip'
+# better lsblk default
+alias lsblk='lsblk -o name,label,fstype,size,fsuse%,type,mountpoint'
+# more convenient fehbg usage
+alias fehbg='~/.fehbg'
 
 # opens file with fzf
 function fzo(){
