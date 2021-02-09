@@ -64,6 +64,9 @@ filetype plugin on
 
 " set rtp+=~/.vim/bundle/autoclose.vim
 
+tnoremap <Esc> <C-\><C-n>
+autocmd TermOpen * setlocal nonumber norelativenumber
+
 set hidden
 let g:racer_cmd = "/home/ben/.cargo/bin/racer"
 let g:racer_experimental_completer = 1
