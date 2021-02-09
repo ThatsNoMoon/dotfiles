@@ -22,7 +22,7 @@ Plugin 'vim-airline/vim-airline'
 " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
 "Plugin 'autoclose'
-Plugin 'delimitMate'
+Plugin 'Raimondi/delimitMate'
 Plugin 'surround.vim'
 Plugin 'EasyMotion'
 "Plugin 'Syntastic'
@@ -91,6 +91,7 @@ set autoread
 set number
 set nowrap
 
+let g:delimitMate_expand_cr = 2
 set autoindent smartindent
 set tabstop=4
 set softtabstop=0
@@ -98,7 +99,7 @@ set expandtab
 set shiftwidth=4
 set smarttab
 
-set shell=zsh
+set shell=/bin/bash
 
 set incsearch
 set ignorecase
