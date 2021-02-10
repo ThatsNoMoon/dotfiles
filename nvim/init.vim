@@ -27,9 +27,7 @@ Plugin 'surround.vim'
 Plugin 'EasyMotion'
 "Plugin 'Syntastic'
 
-Plugin 'elixir-editors/vim-elixir'
-
-Plugin 'hylang/vim-hy'
+Plugin 'dag/vim-fish'
 
 " Git plugin not hosted on GitHub
 " Plugin 'git://git.wincent.com/command-t.git'
