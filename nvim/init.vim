@@ -2,90 +2,110 @@ set nocompatible
 
 let mapleader = ' '
 
+nnoremap ; :
+vnoremap ; :
+
+tnoremap <Esc> <C-\><C-n>
+
+augroup term
+	autocmd!
+	autocmd TermOpen * setlocal nonumber norelativenumber
+augroup END
+
+command Fish edit term://fish
+command Config edit ~/.config/nvim/init.vim
+
+set clipboard+=unnamedplus
+let g:clipboard = {
+			\   'name': 'win32yank-wsl',
+			\   'copy': {
+			\      '+': 'win32yank.exe -i --crlf',
+			\      '*': 'win32yank.exe -i --crlf',
+			\    },
+			\   'paste': {
+			\      '+': 'win32yank.exe -o --lf',
+			\      '*': 'win32yank.exe -o --lf',
+			\   },
+			\   'cache_enabled': 0,
+			\ }
+
 filetype off
-" set the runtime path to include Vundle and initialize
+
 set rtp+=~/.config/nvim/bundle/Vundle.vim
 call vundle#begin('~/.config/nvim/bundle')
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-"Plugin 'tpope/vim-fugitive'
-"Plugin 'racer-rust/vim-racer'
 Plugin 'joshdick/onedark.vim'
 Plugin 'vim-airline/vim-airline'
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-"Plugin 'autoclose'
+
 Plugin 'Raimondi/delimitMate'
 Plugin 'surround.vim'
 Plugin 'EasyMotion'
-"Plugin 'Syntastic'
+
+Plugin 'moll/vim-bbye'
+Plugin 'L9'
+Plugin 'FuzzyFinder'
+
+Plugin 'neovim/nvim-lspconfig'
 
 Plugin 'dag/vim-fish'
 
-" Git plugin not hosted on GitHub
-" Plugin 'git://git.wincent.com/command-t.git'
-
-" git repos on your local machine (i.e. when working on your own plugin)
-" Plugin 'file:///home/gmarik/path/to/plugin'
-
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
-
-"Plugin 'rust-lang/rust.vim'
-"Plugin 'vim-syntastic/syntastic'
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-"filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
+call vundle#end()
 filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
 
-" set rtp+=~/.vim/bundle/autoclose.vim
+lua << EOF
 
-tnoremap <Esc> <C-\><C-n>
-autocmd TermOpen * setlocal nonumber norelativenumber
+local lsp = require 'lspconfig'
 
-set hidden
-let g:racer_cmd = "/home/ben/.cargo/bin/racer"
-let g:racer_experimental_completer = 1
+lsp.rust_analyzer.setup {}
+
+lsp.clangd.setup {}
+
+EOF
+
+nnoremap <silent> K :lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gD :lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <c-k> :lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> 1gD :lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> gr :lua vim.lsp.buf.references()<CR>
+nnoremap <silent> g0 :lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <silent> gW :lua vim.lsp.buf.workspace_symbol()<CR>
+nnoremap <silent> gd :lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> <Leader>ca :lua vim.lsp.buf.code_action()<CR>
+
+augroup lsp
+	autocmd!
+	autocmd Filetype rust,cpp setlocal omnifunc=v:lua.vim.lsp.omnifunc
+
+	autocmd Filetype rust,cpp nnoremap <silent> <buffer> <c-]> :lua vim.lsp.buf.definition()<CR>
+
+	autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 1000)
+	autocmd BufWritePre *.cpp lua vim.lsp.buf.formatting_sync(nil, 1000)
+	autocmd BufWritePre *.h lua vim.lsp.buf.formatting_sync(nil, 1000)
+augroup END
+
+command LspRestart execute 'lua vim.lsp.stop_client(vim.lsp.get_active_clients())' | edit
+
+nnoremap <Leader>ff :FufFile<CR>
+nnoremap <Leader>fq :FufQuickfix<CR>
+nnoremap <Leader>fb :FufBuffer<CR>
+nnoremap <Leader>fl :FufLine<CR>
 
 let g:EasyMotion_leader_key = '<Leader>'
 
-au FileType rust nmap gd <Plug>(rust-def)
-au FileType rust nmap gs <Plug>(rust-def-split)
-au FileType rust nmap gx <Plug>(rust-def-vertical)
-au FileType rust nmap <leader>gd <Plug>(rust-doc)
+let g:airline_section_y = 'W %{winnr()}'
+
+set hidden
 
 syntax on
 
 set background=dark
 set termguicolors
 colorscheme onedark
+let g:onedark_terminal_italics=1
 highlight LineNr ctermfg=grey guifg=#969896
 
 set cc=80
-
-let g:onedark_terminal_italics=1
 
 set ruler
 set autoread
@@ -95,10 +115,16 @@ set nowrap
 let g:delimitMate_expand_cr = 2
 set autoindent smartindent
 set tabstop=4
-set softtabstop=0
-set expandtab
 set shiftwidth=4
+set softtabstop=4
+set noexpandtab
 set smarttab
+
+augroup fmt
+	autocmd!
+	autocmd FileType rs setlocal noexpandtab
+	autocmd FileType cpp setlocal expandtab
+augroup END
 
 set shell=/bin/bash
 
