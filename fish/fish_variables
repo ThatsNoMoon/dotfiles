@@ -7,6 +7,7 @@ SETUVAR --export CCACHE_DIR:/home/moon/\x2ecache/ccache
 SETUVAR --export DOCKER_HOME:/home/moon/\x2econfig//docker
 SETUVAR --export EDITOR:/usr/sbin/nvim
 SETUVAR --export ELINKS_CONFDIR:/home/moon/\x2econfig//elinks
+SETUVAR --export FZF_DEFAULT_COMMAND:fd\x20\x2dt\x20f\x20\x2dH
 SETUVAR --export GNUPGHOME:/home/moon/\x2elocal/share/gpg
 SETUVAR --export --path GOPATH:/home/moon/\x2ecache/go
 SETUVAR --export GRADLE_USER_HOME:/home/moon/\x2elocal/share/gradle
