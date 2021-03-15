@@ -5,6 +5,7 @@ SETUVAR --export CARGO_HOME:/home/moon/\x2elocal/share/cargo
 SETUVAR --export --path CCACHE_CONFIGPATH:/home/moon/\x2econfig//ccache
 SETUVAR --export CCACHE_DIR:/home/moon/\x2ecache/ccache
 SETUVAR --export DOCKER_HOME:/home/moon/\x2econfig//docker
+SETUVAR --export DOTNET_CLI_TELEMETRY_OPTOUT:1
 SETUVAR --export EDITOR:/usr/sbin/nvim
 SETUVAR --export ELINKS_CONFDIR:/home/moon/\x2econfig//elinks
 SETUVAR --export FZF_DEFAULT_COMMAND:fd\x20\x2dt\x20f\x20\x2dH
@@ -53,4 +54,4 @@ SETUVAR fish_pager_color_completion:normal
 SETUVAR fish_pager_color_description:B3A06D\x1eyellow
 SETUVAR fish_pager_color_prefix:white\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
-SETUVAR fish_user_paths:/home/moon/\x2elocal/share/cargo/bin\x1e/home/moon/\x2elocal/bin
+SETUVAR fish_user_paths:/home/moon/\x2elocal/share/cargo/bin\x1e/home/moon/\x2elocal/bin\x1e/home/moon/\x2edeno/bin
